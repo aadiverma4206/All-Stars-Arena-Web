@@ -179,12 +179,12 @@ export const CallSupportModal = () => {
                     Turf Head Office &amp; Arena Complex
                   </span>
                   <p className="text-slate-600 dark:text-slate-400">
-                    VIP Road, Near Airport Circle, Raipur, Chhattisgarh 492006 (Beside Zola Mall)
+                    VIP Road, Near Airport Circle, Raipur, Chhattisgarh 492006 (Beside Zora Mall)
                   </p>
                 </div>
               </div>
               <button
-                onClick={() => copyToClipboard('VIP Road, Near Airport Circle, Raipur, Chhattisgarh 492006 (Beside Zola Mall)', 'address')}
+                onClick={() => copyToClipboard('VIP Road, Near Airport Circle, Raipur, Chhattisgarh 492006 (Beside Zora Mall)', 'address')}
                 className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 cursor-pointer shrink-0"
               >
                 {copiedKey === 'address' ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}

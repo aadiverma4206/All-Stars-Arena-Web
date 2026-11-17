@@ -55,9 +55,15 @@ export const Footer = () => {
 
           {/* Official Brand Lockup & Powered by Botivate */}
           <div className="space-y-3">
-            <AllStarsLogo size="md" />
+            <button 
+              onClick={() => scrollTo('top')}
+              className="text-left cursor-pointer focus:outline-none block"
+              aria-label="All Stars Arena - Scroll to top"
+            >
+              <AllStarsLogo size="md" showText={true} inverted={true} />
+            </button>
             <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
-              Premier Pickup Football &amp; Arena Management • Beside Zola Mall, Raipur, Chhattisgarh.
+              Premier Pickup Football &amp; Arena Management • Beside Zora Mall, Raipur, Chhattisgarh.
             </p>
             <div className="pt-2">
               <div className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-slate-800/90 border border-slate-700/80 text-slate-200 text-xs font-black">

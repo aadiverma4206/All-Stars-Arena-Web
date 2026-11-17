@@ -22,7 +22,7 @@ export const TermsConditionsContent = () => {
           Acceptance of Terms
         </h5>
         <p>
-          By creating an account, reserving a pitch slot, entering our sports facility beside Zola Mall (Raipur), or accessing our web and mobile applications, you formally agree to comply with and be legally bound by these Terms &amp; Conditions.
+          By creating an account, reserving a pitch slot, entering our sports facility beside Zora Mall (Raipur), or accessing our web and mobile applications, you formally agree to comply with and be legally bound by these Terms &amp; Conditions.
         </p>
       </section>
 

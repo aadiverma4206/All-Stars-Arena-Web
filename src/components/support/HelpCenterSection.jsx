@@ -86,7 +86,13 @@ export const HelpCenterSection = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [openFaqId, setOpenFaqId] = useState('b1');
+  const [openFaqIds, setOpenFaqIds] = useState(['b1', 'b2']);
+
+  const toggleFaq = (id) => {
+    setOpenFaqIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
 
   const filteredFaqs = useMemo(() => {
     return FAQ_DATA.filter((faq) => {
@@ -100,6 +106,69 @@ export const HelpCenterSection = () => {
       return matchesCategory && matchesSearch;
     });
   }, [searchQuery, selectedCategory]);
+
+  const col1 = useMemo(() => filteredFaqs.filter((_, i) => i % 2 === 0), [filteredFaqs]);
+  const col2 = useMemo(() => filteredFaqs.filter((_, i) => i % 2 === 1), [filteredFaqs]);
+
+  const getCategoryBadgeClass = (category) => {
+    switch (category) {
+      case 'Bookings':
+        return 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30';
+      case 'Payments':
+        return 'bg-purple-500/15 text-purple-700 dark:text-purple-400 border border-purple-500/30';
+      case 'Rules':
+        return 'bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30';
+      case 'Account':
+        return 'bg-blue-500/15 text-blue-700 dark:text-blue-400 border border-blue-500/30';
+      default:
+        return 'bg-sport-500/15 text-sport-600 dark:text-sport-400 border border-sport-500/30';
+    }
+  };
+
+  const renderFaqCard = (faq) => {
+    const isOpen = openFaqIds.includes(faq.id);
+    return (
+      <div
+        key={faq.id}
+        className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+          isOpen
+            ? 'bg-white dark:bg-slate-900/90 border-sport-500/60 dark:border-sport-500/50 shadow-md shadow-sport-500/5 ring-1 ring-sport-500/20'
+            : 'bg-white/80 dark:bg-slate-900/50 border-slate-200/90 dark:border-slate-800/80 hover:border-sport-500/40 hover:bg-white dark:hover:bg-slate-900/80 shadow-xs'
+        }`}
+      >
+        <button
+          onClick={() => toggleFaq(faq.id)}
+          className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3 cursor-pointer focus:outline-none group"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 flex-1 min-w-0">
+            <span
+              className={`px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider shrink-0 w-fit ${getCategoryBadgeClass(
+                faq.category
+              )}`}
+            >
+              {faq.category}
+            </span>
+            <span className="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-sport-500 transition-colors leading-snug">
+              {faq.question}
+            </span>
+          </div>
+          <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-sport-500 group-hover:bg-sport-500/10 transition-colors shrink-0 mt-0.5">
+            {isOpen ? (
+              <ChevronUp className="w-3.5 h-3.5 text-sport-500" />
+            ) : (
+              <ChevronDown className="w-3.5 h-3.5" />
+            )}
+          </div>
+        </button>
+
+        {isOpen && (
+          <div className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 bg-slate-50/50 dark:bg-slate-950/20">
+            <p>{faq.answer}</p>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <section id="faq" className="footy-card p-5 sm:p-12 space-y-10 scroll-mt-24">
@@ -240,8 +309,8 @@ export const HelpCenterSection = () => {
         ))}
       </div>
 
-      {/* FAQ Accordions Grid */}
-      <div className="max-w-3xl mx-auto space-y-3">
+      {/* FAQ Accordions Double Column Grid */}
+      <div className="max-w-6xl mx-auto">
         {filteredFaqs.length === 0 ? (
           <div className="p-8 text-center rounded-2xl bg-slate-100 dark:bg-slate-800/40 text-slate-500 text-xs">
             No questions found matching "{searchQuery}". Try a different keyword or ask our{' '}
@@ -250,40 +319,22 @@ export const HelpCenterSection = () => {
             </button>.
           </div>
         ) : (
-          filteredFaqs.map((faq) => {
-            const isOpen = openFaqId === faq.id;
-            return (
-              <div
-                key={faq.id}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/40 overflow-hidden transition-all"
-              >
-                <button
-                  onClick={() => setOpenFaqId(isOpen ? null : faq.id)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none group"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="px-2 py-0.5 rounded-md bg-sport-500/10 text-sport-600 dark:text-sport-400 text-[10px] font-black uppercase tracking-wider shrink-0">
-                      {faq.category}
-                    </span>
-                    <span className="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-sport-500 transition-colors">
-                      {faq.question}
-                    </span>
-                  </div>
-                  {isOpen ? (
-                    <ChevronUp className="w-4 h-4 text-sport-500 shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-400 shrink-0 group-hover:text-slate-200" />
-                  )}
-                </button>
-
-                {isOpen && (
-                  <div className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60">
-                    <p>{faq.answer}</p>
-                  </div>
-                )}
+          <>
+            {/* Desktop / Tablet 2-Column Masonry */}
+            <div className="hidden md:grid md:grid-cols-2 gap-4 items-start">
+              <div className="space-y-4">
+                {col1.map(renderFaqCard)}
               </div>
-            );
-          })
+              <div className="space-y-4">
+                {col2.map(renderFaqCard)}
+              </div>
+            </div>
+
+            {/* Mobile 1-Column Sequential List */}
+            <div className="md:hidden space-y-3">
+              {filteredFaqs.map(renderFaqCard)}
+            </div>
+          </>
         )}
       </div>
 

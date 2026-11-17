@@ -29,7 +29,7 @@ Your turf slot booking is confirmed instantly upon successful payment.
 • Need to reset your PIN? Visit Profile > Wallet Security > Reset PIN.`,
 
   location: `📍 **Raipur Arena Location & Directions:**
-• **Address:** Beside Zola Mall, VIP Road, Near Airport Circle, Raipur, Chhattisgarh 492006.
+• **Address:** Beside Zora Mall, VIP Road, Near Airport Circle, Raipur, Chhattisgarh 492006.
 • **Timings:** Open 7 Days a week from 06:00 AM to 12:00 AM (Midnight).
 • **Parking:** Free dedicated 50+ vehicle parking space right outside the turf gates.
 • **Turf Type:** Official 5G FIFA Synthetic Turf with 350+ LUX stadium night lights.`,
@@ -40,7 +40,7 @@ You can tap any of the quick suggestion chips above, or call our toll-free suppo
 };
 
 export const ChatSupportWidget = () => {
-  const { isChatOpen, closeChat, toggleChat, openCallModal } = useSupportStore();
+  const { isChatOpen, closeChat, openCallModal } = useSupportStore();
 
   const [messages, setMessages] = useState([
     {
@@ -95,7 +95,7 @@ export const ChatSupportWidget = () => {
         replyText = BOT_RESPONSES.refund;
       } else if (lower.includes('wallet') || lower.includes('top-up') || lower.includes('pin') || lower.includes('balance')) {
         replyText = BOT_RESPONSES.wallet;
-      } else if (lower.includes('location') || lower.includes('where') || lower.includes('address') || lower.includes('zola') || lower.includes('raipur') || lower.includes('map')) {
+      } else if (lower.includes('location') || lower.includes('where') || lower.includes('address') || lower.includes('Zora') || lower.includes('raipur') || lower.includes('map')) {
         replyText = BOT_RESPONSES.location;
       }
 
@@ -117,28 +117,8 @@ export const ChatSupportWidget = () => {
   };
 
   return (
-    <>
-      {/* Floating Action Button at Bottom-Right */}
-      <div className="fixed bottom-5 right-5 z-40">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={toggleChat}
-          className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-sport-500 hover:bg-sport-400 text-slate-950 font-black shadow-xl shadow-sport-500/30 border-2 border-slate-950 dark:border-white/20 transition-all cursor-pointer"
-          aria-label="Open Chat Support"
-        >
-          <div className="relative">
-            <Bot className="w-5 h-5 text-slate-950" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-300 rounded-full animate-ping" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full" />
-          </div>
-          <span className="text-xs tracking-wider uppercase hidden sm:inline">Arena Support</span>
-        </motion.button>
-      </div>
-
-      {/* Interactive Chat Window */}
-      <AnimatePresence>
-        {isChatOpen && (
+    <AnimatePresence>
+      {isChatOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -285,7 +265,6 @@ export const ChatSupportWidget = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
   );
 };
 

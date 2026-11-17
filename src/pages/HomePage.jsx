@@ -29,8 +29,8 @@ export const HomePage = () => {
       avatar: 'AB',
       color: 'bg-emerald-600',
       role: 'Weekend Striker',
-      location: 'Raipur (Beside Zola Mall)',
-      text: 'I love playing football, so being able to pick and choose when to play is the best thing ever. The 5G pitch beside Zola Mall is top quality. If I could give 10 stars, I would.'
+      location: 'Raipur (Beside Zora Mall)',
+      text: 'I love playing football, so being able to pick and choose when to play is the best thing ever. The 5G pitch beside Zora Mall is top quality. If I could give 10 stars, I would.'
     },
     {
       name: 'Prithivi',
@@ -86,7 +86,7 @@ export const HomePage = () => {
       color: 'bg-cyan-600',
       role: 'Casual Baller',
       location: 'Raipur (Civil Lines)',
-      text: 'The air-conditioned changing rooms and clean showers are a blessing after an intense 60-minute game. Premium amenities right next to Zola Mall.'
+      text: 'The air-conditioned changing rooms and clean showers are a blessing after an intense 60-minute game. Premium amenities right next to Zora Mall.'
     },
     {
       name: 'Tushar Sahu',
@@ -206,7 +206,7 @@ export const HomePage = () => {
             Welcome to All Stars Arena
           </h2>
           <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 leading-relaxed">
-            We make playing casual football easy for thousands of football lovers around Raipur. Our simple app gets you playing football on a pitch beside Zola Mall faster than you can say tiki-taka. We pride ourselves in being the home of well organised games, dodgy bicycle kicks and last minute winners.
+            We make playing casual football easy for thousands of football lovers around Raipur. Our simple app gets you playing football on a pitch beside Zora Mall faster than you can say tiki-taka. We pride ourselves in being the home of well organised games, dodgy bicycle kicks and last minute winners.
           </p>
         </div>
       </section>
@@ -428,7 +428,7 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 7. ALL STARS ARENA LOCATION — EXCLUSIVELY BESIDE ZOLA MALL, RAIPUR */}
+      {/* 7. ALL STARS ARENA LOCATION — EXCLUSIVELY BESIDE Zora MALL, RAIPUR */}
       <section id="pitches" className="footy-card p-6 sm:p-12 space-y-8 scroll-mt-24">
         
         {/* Venue Location Hero Banner */}
@@ -444,7 +444,7 @@ export const HomePage = () => {
               </h2>
               <p className="text-xs sm:text-sm text-slate-300 font-semibold max-w-2xl leading-relaxed flex items-center space-x-1.5">
                 <span className="text-sport-400 font-bold">📍 Address:</span>
-                <span>Beside Zola Mall, Raipur, Chhattisgarh 492006</span>
+                <span>Beside Zora Mall, Raipur, Chhattisgarh 492006</span>
               </p>
             </div>
 
@@ -454,7 +454,7 @@ export const HomePage = () => {
                 <span>🟢 OPEN TODAY • 06:00 AM – 12:00 AM</span>
               </div>
               <a 
-                href="https://maps.google.com/?q=Zola+Mall+Raipur" 
+                href="https://maps.google.com/?q=Zora+Mall+Raipur" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center space-x-2 px-4 py-2 rounded-xl bg-sport-500 hover:bg-sport-600 text-white text-xs font-black uppercase tracking-wider transition-all shadow-md shadow-sport-500/20 cursor-pointer"

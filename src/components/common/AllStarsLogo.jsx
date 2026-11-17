@@ -4,7 +4,8 @@ export const AllStarsLogo = ({
   size = 'md', 
   className = '',
   showText = false,
-  textClassName = ''
+  textClassName = '',
+  inverted = false
 }) => {
   const sizeMap = {
     sm: 'h-10 sm:h-11 w-auto max-w-[120px]',
@@ -23,18 +24,26 @@ export const AllStarsLogo = ({
   const currentSize = sizeMap[size] || sizeMap.md;
   const currentTextSize = textSizeMap[size] || textSizeMap.md;
 
+  const filterClass = inverted 
+    ? 'brightness-0 invert drop-shadow-[0_2px_10px_rgba(34,197,94,0.35)]' 
+    : 'dark:brightness-0 dark:invert drop-shadow-sm';
+
+  const textColorClass = inverted
+    ? 'text-white'
+    : 'text-slate-900 dark:text-white';
+
   return (
     <div className={`inline-flex items-center gap-2.5 sm:gap-3 group select-none ${className}`}>
       <img
         src="/assets/images/all_stars_arena_logo.png"
         alt="All Stars Arena Logo"
-        className={`${currentSize} object-contain transition-all duration-200 group-hover:scale-105 dark:brightness-0 dark:invert drop-shadow-sm`}
+        className={`${currentSize} object-contain transition-all duration-200 group-hover:scale-105 ${filterClass}`}
         onError={(e) => {
           e.currentTarget.src = '/all_stars_arena_logo.png';
         }}
       />
       {showText && (
-        <span className={`${currentTextSize} tracking-tight text-slate-900 dark:text-white whitespace-nowrap group-hover:text-sport-500 dark:group-hover:text-sport-400 transition-colors ${textClassName}`}>
+        <span className={`${currentTextSize} tracking-tight ${textColorClass} whitespace-nowrap group-hover:text-sport-500 dark:group-hover:text-sport-400 transition-colors ${textClassName}`}>
           All Stars Arena
         </span>
       )}

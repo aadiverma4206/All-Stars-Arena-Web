@@ -324,7 +324,7 @@ export const ArenaEcosystemRadar = () => {
     { id: 'o2', label: '1800-123-4567', icon: PhoneCall, angle: 30, color: 'text-emerald-500', hoverBorder: 'hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400', action: () => openCallModal() },
     { id: 'o3', label: 'Rubber Studs TF', icon: Footprints, angle: 60, color: 'text-teal-500', hoverBorder: 'hover:border-teal-500 hover:text-teal-600 dark:hover:text-teal-400', action: () => openLegalModal('risk') },
     { id: 'o4', label: 'Free 50+ Parking', icon: CheckCircle2, angle: 90, color: 'text-indigo-500', hoverBorder: 'hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400', action: () => {} },
-    { id: 'o5', label: 'Beside Zola Mall', icon: MapPin, angle: 120, color: 'text-rose-500', hoverBorder: 'hover:border-rose-500 hover:text-rose-600 dark:hover:text-rose-400', action: () => {} },
+    { id: 'o5', label: 'Beside Zora Mall', icon: MapPin, angle: 120, color: 'text-rose-500', hoverBorder: 'hover:border-rose-500 hover:text-rose-600 dark:hover:text-rose-400', action: () => {} },
     { id: 'o6', label: 'AC Locker Rooms', icon: CheckCircle2, angle: 150, color: 'text-cyan-500', hoverBorder: 'hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400', action: () => {} },
     { id: 'o7', label: 'Risk Disclosure', icon: AlertTriangle, angle: 180, color: 'text-orange-500', hoverBorder: 'hover:border-orange-500 hover:text-orange-600 dark:hover:text-orange-400', action: () => openLegalModal('risk') },
     { id: 'o8', label: 'Terms of Use', icon: FileText, angle: 210, color: 'text-purple-500', hoverBorder: 'hover:border-purple-500 hover:text-purple-600 dark:hover:text-purple-400', action: () => openLegalModal('terms') },
@@ -340,19 +340,11 @@ export const ArenaEcosystemRadar = () => {
       {/* Background Soft Radial Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.08)_0%,_transparent_70%)] pointer-events-none" />
 
-      {/* Header Pill & Title */}
-      <div className="text-center space-y-2 mb-6 sm:mb-8 relative z-10 px-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sport-500/10 border border-sport-500/30 text-sport-500 text-xs font-black uppercase tracking-widest">
-          <Sparkles className="w-3.5 h-3.5 animate-spin [animation-duration:12s]" />
-          <span>ALL STARS ARENA ECOSYSTEM RADAR</span>
-        </div>
-        <h3 className="text-xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight">
-          Interactive Multi-Orbit Ecosystem
+      {/* Header Title */}
+      <div className="text-center mb-6 sm:mb-8 relative z-10 px-4">
+        <h3 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tight">
+          All Stars Arena System
         </h3>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
-          Ring 1 rotates Clockwise • Ring 2 rotates Anti-Clockwise • Ring 3 rotates Clockwise.
-          <br className="hidden sm:inline" /> Click the central hub to trigger the <strong>Reverse Rewind &amp; Re-align</strong> animation!
-        </p>
       </div>
 
       {/* 3D Perspective Stage Container */}

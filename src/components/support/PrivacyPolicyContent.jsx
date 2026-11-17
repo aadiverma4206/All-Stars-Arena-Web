@@ -78,7 +78,7 @@ export const PrivacyPolicyContent = () => {
         <div className="space-y-2 text-xs">
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-4 h-4 text-sport-500 shrink-0 mt-0.5" />
-            <span><strong>Turf Slot Reservations:</strong> Scheduling confirmed pitch bookings at our Raipur arena beside Zola Mall.</span>
+            <span><strong>Turf Slot Reservations:</strong> Scheduling confirmed pitch bookings at our Raipur arena beside Zora Mall.</span>
           </div>
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-4 h-4 text-sport-500 shrink-0 mt-0.5" />
