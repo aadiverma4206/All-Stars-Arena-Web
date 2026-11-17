@@ -3,12 +3,14 @@ import { useState, useEffect, useRef } from 'react';
 export function useFootballAnimation() {
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
   const scrollRef = useRef({ y: 0, targetY: 0 });
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return !!window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  });
 
   useEffect(() => {
-    // Reduced motion check
+    // Reduced motion listener
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mediaQuery.matches);
 
     const handleMotionChange = (e) => setReducedMotion(e.matches);
     if (mediaQuery.addEventListener) {

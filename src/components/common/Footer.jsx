@@ -14,7 +14,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-slate-200 dark:border-slate-800 bg-slate-900 text-white pt-12 pb-8 transition-colors">
+    <footer className="border-t border-slate-200 dark:border-slate-800/80 bg-slate-900 dark:bg-[#011410] text-white pt-12 pb-8 transition-colors">
       <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
         
         {/* Footer Navigation Columns */}
@@ -34,8 +34,8 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li><button onClick={() => scrollTo('about')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Our story</button></li>
               <li><button onClick={() => scrollTo('stats')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Impact</button></li>
-              <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Play football</button></li>
-              <li><button onClick={() => scrollTo('pitches')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Pitches & Venues</button></li>
+              <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Play football &amp; basketball</button></li>
+              <li><button onClick={() => scrollTo('pitches')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Pitches &amp; Venues</button></li>
             </ul>
           </div>
 
@@ -53,7 +53,7 @@ export const Footer = () => {
           <div className="space-y-3">
             <AllStarsLogo size="md" />
             <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
-              Premier Pickup Football & Arena Management Platform across India.
+              Premier Pickup Football &amp; Arena Management • Beside Zola Mall, Raipur, Chhattisgarh.
             </p>
             <div className="pt-2">
               <div className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-slate-800/90 border border-slate-700/80 text-slate-200 text-xs font-black">
@@ -66,7 +66,7 @@ export const Footer = () => {
 
         {/* Bottom Copyright Ribbon */}
         <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-[11px] font-bold text-slate-500 gap-2">
-          <span>2026 © All Stars Arena, Ltd. All rights reserved • Powered by <strong className="text-slate-300">Botivate</strong></span>
+          <span>2026 © All Stars Arena (Raipur). All rights reserved • Powered by <strong className="text-slate-300">Botivate</strong></span>
           <div className="flex space-x-4">
             <button onClick={() => scrollTo('about')} className="hover:underline cursor-pointer">Terms of use</button>
             <button onClick={() => scrollTo('faq')} className="hover:underline cursor-pointer">Privacy policy</button>

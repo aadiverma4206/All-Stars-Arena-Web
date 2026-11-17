@@ -21,11 +21,25 @@ export default {
           500: '#f59e0b', // Energetic Tournament Orange/Yellow
           600: '#d97706',
         },
+        slate: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#0f4538', // Subtle dark emerald border
+          800: '#09332a', // Elevated dark emerald border & container
+          850: '#06241e', // Intermediate dark surface
+          900: '#031c17', // Elevated card / navbar surface
+          950: '#011410', // User's exact dark mode background color!
+        },
         darkbg: {
-          base: '#0b0f17',
-          surface: '#111827',
-          card: '#1f2937',
-          border: '#374151'
+          base: '#011410',
+          surface: '#031c17',
+          card: '#06241e',
+          border: '#09332a'
         },
         lightbg: {
           base: '#f8fafc',

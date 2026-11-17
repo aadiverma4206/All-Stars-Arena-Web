@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
-import Button from './Button';
 import AllStarsLogo from './AllStarsLogo';
 
 export const Navbar = () => {
@@ -43,7 +42,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors overflow-x-clip">
+    <header className="sticky top-0 z-40 w-full bg-white/90 dark:bg-[#011410]/95 backdrop-blur-md border-b border-slate-200 dark:border-emerald-950/80 transition-colors overflow-x-clip">
       <div className="max-w-[1600px] w-full mx-auto px-3 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
@@ -60,10 +59,10 @@ export const Navbar = () => {
           </button>
 
           {/* Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1 sm:space-x-2">
+          <nav className="hidden lg:flex items-center space-x-0.5 xl:space-x-1.5">
             <button
               onClick={() => scrollToSection('top')}
-              className="px-3.5 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider transition-colors bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 border border-emerald-500/30 cursor-pointer"
+              className="px-2.5 xl:px-3.5 py-1.5 rounded-md text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-colors bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 border border-emerald-500/30 cursor-pointer"
             >
               HOME
             </button>
@@ -72,7 +71,7 @@ export const Navbar = () => {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
+                className="px-2 xl:px-3 py-1.5 rounded-md text-[11px] xl:text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors cursor-pointer whitespace-nowrap"
               >
                 {link.label}
               </button>
@@ -80,27 +79,8 @@ export const Navbar = () => {
           </nav>
 
           {/* Right Actions */}
-          <div className="hidden sm:flex items-center space-x-2.5">
+          <div className="hidden lg:flex items-center space-x-2.5">
             <ThemeToggle />
-
-            <div className="flex items-center space-x-2">
-              <button 
-                onClick={() => scrollToSection('pitches')}
-                className="px-4 py-2 rounded-2xl text-xs font-black uppercase text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-              >
-                Register
-              </button>
-
-              <Button 
-                variant="danger"
-                size="sm"
-                rainbowBorder={true}
-                onClick={() => scrollToSection('pitches')}
-                className="px-5 py-2 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-black uppercase shadow-md shadow-rose-500/30"
-              >
-                Sign In
-              </Button>
-            </div>
           </div>
 
           {/* Mobile hamburger menu & Theme Toggle */}
@@ -138,7 +118,7 @@ export const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 26, stiffness: 260 }}
-                className="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between shadow-2xl z-10"
+                className="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-white dark:bg-[#011410] border-l border-slate-200 dark:border-emerald-950/80 p-6 flex flex-col justify-between shadow-2xl z-10"
               >
                 <div className="space-y-6">
                   <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
@@ -181,23 +161,9 @@ export const Navbar = () => {
                   </nav>
                 </div>
 
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
-                  <button 
-                    onClick={() => scrollToSection('pitches')}
-                    className="w-full py-2.5 rounded-xl text-xs font-black uppercase text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700"
-                  >
-                    Register
-                  </button>
-
-                  <Button 
-                    variant="danger"
-                    size="sm"
-                    rainbowBorder={true}
-                    onClick={() => scrollToSection('pitches')}
-                    className="w-full py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-black uppercase shadow-md shadow-rose-500/30"
-                  >
-                    Sign In
-                  </Button>
+                <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Appearance</span>
+                  <ThemeToggle />
                 </div>
               </motion.div>
             </div>

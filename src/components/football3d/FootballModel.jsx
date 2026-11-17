@@ -2,7 +2,7 @@ import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-// Generate ultra-realistic 2048x1024 classic 32-panel All Stars Arena match ball texture
+// Generate ultra-realistic 2048x1024 classic 32-panel FIFA match ball texture
 function generateRealisticFootballTexture(theme = 'dark') {
   const canvas = document.createElement('canvas');
   canvas.width = 2048;
@@ -10,10 +10,11 @@ function generateRealisticFootballTexture(theme = 'dark') {
   const ctx = canvas.getContext('2d');
 
   // 1. Premium white synthetic leather base
+  const isDark = theme === 'dark';
   const bgGrad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
   bgGrad.addColorStop(0, '#ffffff');
-  bgGrad.addColorStop(0.5, '#f1f5f9');
-  bgGrad.addColorStop(1, '#e2e8f0');
+  bgGrad.addColorStop(0.5, isDark ? '#f1f5f9' : '#ffffff');
+  bgGrad.addColorStop(1, isDark ? '#e2e8f0' : '#f8fafc');
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -98,31 +99,71 @@ function generateRealisticFootballTexture(theme = 'dark') {
   ctx.setLineDash([]); // Reset dash
 
   // 5. Official ALL STARS ARENA Match Ball Watermark Logo
-  ctx.save();
-  ctx.font = '900 24px sans-serif';
-  
-  const allStarsWidth = ctx.measureText('ALL STARS ').width;
-  const arenaWidth = ctx.measureText('ARENA').width;
-  const totalWidth = allStarsWidth + arenaWidth;
-  const startX = (canvas.width - totalWidth) / 2;
-  const textY = canvas.height / 2 + 10;
-  
-  ctx.textAlign = 'left';
-  
-  // "ALL STARS" in dark slate
-  ctx.fillStyle = '#0f172a';
-  ctx.fillText('ALL STARS ', startX, textY);
-  
-  // "ARENA" in vibrant green
-  ctx.fillStyle = '#22c55e';
-  ctx.fillText('ARENA', startX + allStarsWidth, textY);
-  
-  // "OFFICIAL MATCH BALL"
-  ctx.font = '700 14px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillStyle = '#22c55e';
-  ctx.fillText('OFFICIAL MATCH BALL', canvas.width / 2, canvas.height / 2 + 30);
-  ctx.restore();
+  const drawArenaBrand = (centerX, centerY) => {
+    ctx.save();
+
+    // Subtle contrast badge behind the text for crystal clear visibility
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+    ctx.strokeStyle = '#22c55e';
+    ctx.lineWidth = 2.5;
+    const badgeW = 240;
+    const badgeH = 70;
+    ctx.beginPath();
+    ctx.roundRect(centerX - badgeW / 2, centerY - badgeH / 2, badgeW, badgeH, 16);
+    ctx.fill();
+    ctx.stroke();
+
+    // Font setting
+    ctx.font = '900 21px sans-serif';
+    ctx.textBaseline = 'middle';
+
+    const starLeft = '★ ';
+    const allStars = 'ALL STARS ';
+    const arena = 'ARENA';
+    const starRight = ' ★';
+
+    const starLeftW = ctx.measureText(starLeft).width;
+    const allStarsW = ctx.measureText(allStars).width;
+    const arenaW = ctx.measureText(arena).width;
+    const starRightW = ctx.measureText(starRight).width;
+    const fullW = starLeftW + allStarsW + arenaW + starRightW;
+
+    let curX = centerX - fullW / 2;
+    const line1Y = centerY - 11;
+
+    ctx.textAlign = 'left';
+
+    // Gold Star
+    ctx.fillStyle = '#f59e0b';
+    ctx.fillText(starLeft, curX, line1Y);
+    curX += starLeftW;
+
+    // "ALL STARS " in bold dark slate
+    ctx.fillStyle = '#0f172a';
+    ctx.fillText(allStars, curX, line1Y);
+    curX += allStarsW;
+
+    // "ARENA" in official vibrant green
+    ctx.fillStyle = '#22c55e';
+    ctx.fillText(arena, curX, line1Y);
+    curX += arenaW;
+
+    // Gold Star
+    ctx.fillStyle = '#f59e0b';
+    ctx.fillText(starRight, curX, line1Y);
+
+    // Subtitle: "OFFICIAL MATCH BALL"
+    ctx.font = '800 11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#16a34a';
+    ctx.fillText('OFFICIAL MATCH BALL', centerX, centerY + 15);
+
+    ctx.restore();
+  };
+
+  // Draw on white hexagon panels so "ALL STARS ARENA" is always visible
+  drawArenaBrand(canvas.width * 0.35, canvas.height * 0.5);
+  drawArenaBrand(canvas.width * 0.75, canvas.height * 0.5);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.wrapS = THREE.RepeatWrapping;
@@ -148,8 +189,9 @@ export function FootballModel({ mouseRef, scrollRef, theme = 'dark', reducedMoti
       meshRef.current.rotation.x += safeDelta * 0.18;
       meshRef.current.rotation.z += safeDelta * 0.08;
 
-      // Gentle floating physics
-      const floatY = Math.sin(t * 1.2) * 0.08;
+      // Gentle floating physics with scroll responsiveness
+      const scrollOffset = (scrollRef?.current?.targetY || 0) * 0.15;
+      const floatY = Math.sin(t * 1.2) * 0.08 - scrollOffset;
       const floatX = Math.cos(t * 0.8) * 0.04;
       groupRef.current.position.y = floatY;
       groupRef.current.position.x = floatX;

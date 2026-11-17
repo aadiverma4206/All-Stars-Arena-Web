@@ -12,12 +12,22 @@
     max-width: 100vw;
   }
 
+  html.dark {
+    background-color: #011410 !important;
+    color-scheme: dark;
+  }
+
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200 antialiased min-h-screen selection:bg-sport-500 selection:text-white;
+    @apply bg-slate-50 text-slate-900 dark:bg-[#011410] dark:text-slate-100 transition-colors duration-200 antialiased min-h-screen selection:bg-sport-500 selection:text-white;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     overflow-x: hidden;
     max-width: 100vw;
     position: relative;
+  }
+
+  html.dark body,
+  html.dark #root {
+    background-color: #011410 !important;
   }
 
   *, *::before, *::after {
@@ -63,23 +73,28 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-100 dark:bg-slate-900;
+  @apply bg-slate-100 dark:bg-slate-950;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-slate-700 rounded-full hover:bg-sport-500 dark:hover:bg-sport-600 transition-colors;
+  @apply bg-slate-300 dark:bg-slate-800 rounded-full hover:bg-sport-500 dark:hover:bg-sport-600 transition-colors;
 }
 
 .footy-card {
-  @apply bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl shadow-card-light dark:shadow-card-dark transition-all duration-200;
+  @apply bg-white dark:bg-[#031c17] border border-slate-200/80 dark:border-emerald-900/40 rounded-xl shadow-card-light dark:shadow-card-dark transition-all duration-200;
+}
+
+html.dark .footy-card {
+  background-color: #031c17 !important;
+  border-color: rgba(14, 58, 47, 0.7) !important;
 }
 
 .admin-card {
-  @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg shadow-sm transition-all duration-150;
+  @apply bg-white dark:bg-[#031c17] border border-slate-200 dark:border-emerald-900/40 rounded-lg shadow-sm transition-all duration-150;
 }
 
 .admin-card-hover {
-  @apply hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-150;
+  @apply hover:border-slate-300 dark:hover:border-emerald-700/50 hover:shadow-md transition-all duration-150;
 }
 
 .footy-card-hover {
@@ -87,7 +102,12 @@
 }
 
 .footy-glass {
-  @apply bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800;
+  @apply bg-white/90 dark:bg-[#011410]/95 backdrop-blur-md border border-slate-200/80 dark:border-emerald-900/40;
+}
+
+html.dark .footy-glass {
+  background-color: rgba(1, 20, 16, 0.95) !important;
+  border-color: rgba(14, 58, 47, 0.7) !important;
 }
 
 @property --glow-angle {
@@ -121,6 +141,58 @@
     border-color: rgba(34, 197, 94, 0.70);
     box-shadow: 0 0 20px rgba(34, 197, 94, 0.35), inset 0 0 12px rgba(34, 197, 94, 0.08);
   }
+}
+
+/* River Flow Wave Animations */
+@keyframes river-flow-1 {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-25%, 5px, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes river-flow-2 {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  50% {
+    transform: translate3d(-25%, -6px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes river-flow-3 {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-20%, 4px, 0);
+  }
+  100% {
+    transform: translate3d(-40%, 0, 0);
+  }
+}
+
+.animate-river-1 {
+  animation: river-flow-1 13s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
+}
+
+.animate-river-2 {
+  animation: river-flow-2 9.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
+}
+
+.animate-river-3 {
+  animation: river-flow-3 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
 }
 
 .glow-border {

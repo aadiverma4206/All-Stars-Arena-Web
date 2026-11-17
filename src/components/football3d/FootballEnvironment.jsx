@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
+import React from 'react';
 import { ContactShadows } from '@react-three/drei';
 
 export function FootballEnvironment({ theme = 'dark' }) {
@@ -11,7 +10,7 @@ export function FootballEnvironment({ theme = 'dark' }) {
         scale={8}
         blur={2.5}
         far={4.5}
-        color={theme === 'dark' ? '#000000' : '#475569'}
+        color={theme === 'dark' ? '#011410' : '#475569'}
       />
     </>
   );
