@@ -1,5 +1,6 @@
 export function FootballEnvironment() {
-  // Shadow completely removed as requested
+
+
   return null;
 }
 

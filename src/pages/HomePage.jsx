@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Star, ChevronDown, ChevronUp, MapPin, Play, CheckCircle2, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { Star, MapPin, Play, CheckCircle2, ArrowRight } from 'lucide-react';
 import Button from '../components/common/Button';
 import FootballKickLoader from '../components/common/FootballKickLoader';
 import FootballScene from '../components/football3d/FootballScene';
 import AllStarsLogo from '../components/common/AllStarsLogo';
 import HeroRiverFlow from '../components/common/HeroRiverFlow';
+import HelpCenterSection from '../components/support/HelpCenterSection';
 import { useThemeStore } from '../store/useThemeStore';
 
 export const HomePage = () => {
   const { theme } = useThemeStore();
   const isDark = theme === 'dark';
-  const [openFaq, setOpenFaq] = useState(null);
 
   const scrollToSection = (id) => {
     if (id === 'top') {
@@ -127,25 +126,6 @@ export const HomePage = () => {
   const col2Reviews = [reviews[1], reviews[4], reviews[7], reviews[10]];
   const col3Reviews = [reviews[2], reviews[5], reviews[8], reviews[11]];
 
-  const faqs = [
-    {
-      q: 'How does All Stars Arena work?',
-      a: 'Simply browse open pick-up games and pitches at our arena beside Zola Mall, choose your slot, and turn up at the pitch to play with passionate local ballers!'
-    },
-    {
-      q: 'How can I join a game?',
-      a: 'Check out our arena pitches directory right below, pick a slot at our venue beside Zola Mall, and connect directly with local organizers and pitch managers.'
-    },
-    {
-      q: 'Can anybody participate?',
-      a: 'Yes! All Stars Arena is open to all skill levels, from beginners looking for casual kickabouts to seasoned players looking for intense 5v5 futsal or 7v7 matches.'
-    },
-    {
-      q: 'Where is All Stars Arena located and what are the timings?',
-      a: 'All Stars Arena is located right beside Zola Mall, Raipur, Chhattisgarh 492006. The venue operates 7 days a week from 06:00 AM to 12:00 AM (Midnight) with floodlit pitches and free dedicated parking.'
-    }
-  ];
-
   return (
     <div className="space-y-10 sm:space-y-16 py-4">
 
@@ -200,7 +180,7 @@ export const HomePage = () => {
           </div>
 
           {/* Right Column: 3D Interactive Football Only */}
-          <div className="lg:col-span-5 flex items-center justify-center relative min-h-[320px] sm:min-h-[420px] lg:min-h-[500px] w-full">
+          <div className="lg:col-span-5 flex items-center justify-center relative min-h-[280px] sm:min-h-[360px] md:min-h-[420px] lg:min-h-[480px] w-full">
             <FootballScene />
           </div>
         </div>
@@ -426,8 +406,8 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 6. THREE PILLARS & FAQ SECTION */}
-      <section id="faq" className="footy-card p-5 sm:p-12 space-y-8 sm:space-y-10 scroll-mt-24">
+      {/* 6. THREE PILLARS SECTION */}
+      <section id="ethos" className="footy-card p-5 sm:p-12 space-y-8 sm:space-y-10 scroll-mt-24">
         {/* Three Pillars */}
         <div className="space-y-4 text-center">
           <h2 className="text-xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase">Our ethos is built around three pillars</h2>
@@ -444,38 +424,6 @@ export const HomePage = () => {
               <span className="block text-sky-500 font-black text-sm mb-1">Wellbeing</span>
               <p className="text-slate-600 dark:text-slate-300">Stronger physically &amp; mentally.</p>
             </div>
-          </div>
-        </div>
-
-        {/* FAQ Accordion */}
-        <div className="w-full space-y-5 pt-6 border-t border-slate-200 dark:border-slate-800">
-          <div className="text-center">
-            <h3 className="text-xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Any questions? We got you.</h3>
-            <p className="text-xs sm:text-sm text-slate-400 font-semibold mt-2">Our FAQ section is a great place to start if you've got a question.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {faqs.map((faq, idx) => (
-              <div 
-                key={idx} 
-                className="footy-card p-4 sm:p-5 rounded-2xl cursor-pointer hover:border-sport-500/40 transition-all select-none" 
-                onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <h4 className="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white flex-1">{faq.q}</h4>
-                  {openFaq === idx ? <ChevronUp className="w-4 h-4 text-sport-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />}
-                </div>
-                {openFaq === idx && (
-                  <motion.p 
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    className="text-xs text-slate-600 dark:text-slate-300 font-semibold mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 leading-relaxed"
-                  >
-                    {faq.a}
-                  </motion.p>
-                )}
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -573,6 +521,9 @@ export const HomePage = () => {
         </div>
 
       </section>
+
+      {/* 8. HELP & SUPPORT AND LEGAL INFORMATION HUB */}
+      <HelpCenterSection />
 
     </div>
   );

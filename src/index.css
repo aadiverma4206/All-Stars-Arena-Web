@@ -474,3 +474,74 @@ button:active,
   }
 }
 
+/* ==========================================================================
+   CONCENTRIC ORBITING RADAR WHEEL ANIMATIONS (Clockwise, Anti-Clockwise, Rewind)
+   ========================================================================== */
+
+@keyframes orbit-cw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-ccw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counter-orbit-cw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counter-orbit-ccw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Continuous Ring 1 (Inner): Clockwise (Majestic Slow 55s) */
+.animate-orbit-cw-fast {
+  animation: orbit-cw 55s linear infinite;
+  will-change: transform;
+}
+.animate-counter-orbit-cw-fast {
+  animation: counter-orbit-cw 55s linear infinite;
+  will-change: transform;
+}
+
+/* Continuous Ring 2 (Middle): Anti-Clockwise (Smooth Slow 75s) */
+.animate-orbit-ccw-medium {
+  animation: orbit-ccw 75s linear infinite;
+  will-change: transform;
+}
+.animate-counter-orbit-ccw-medium {
+  animation: counter-orbit-ccw 75s linear infinite;
+  will-change: transform;
+}
+
+/* Continuous Ring 3 (Outer): Clockwise (Gentle Orbit 110s) */
+.animate-orbit-cw-slow {
+  animation: orbit-cw 110s linear infinite;
+  will-change: transform;
+}
+.animate-counter-orbit-cw-slow {
+  animation: counter-orbit-cw 110s linear infinite;
+  will-change: transform;
+}
+
+

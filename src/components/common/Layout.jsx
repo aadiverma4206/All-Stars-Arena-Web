@@ -1,6 +1,9 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import LegalModal from '../support/LegalModal';
+import CallSupportModal from '../support/CallSupportModal';
+import ChatSupportWidget from '../support/ChatSupportWidget';
 
 export const Layout = ({ children }) => {
   return (
@@ -10,6 +13,11 @@ export const Layout = ({ children }) => {
         {children}
       </main>
       <Footer />
+
+      {/* Global Help & Support and Legal Modals */}
+      <LegalModal />
+      <CallSupportModal />
+      <ChatSupportWidget />
     </div>
   );
 };
