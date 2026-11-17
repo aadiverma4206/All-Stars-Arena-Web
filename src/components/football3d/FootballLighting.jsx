@@ -16,36 +16,42 @@ export function FootballLighting({ theme = 'dark' }) {
 
   return (
     <>
-      {/* Ambient Fill Light */}
-      <ambientLight intensity={isDark ? 0.6 : 0.9} />
+      {/* Omnidirectional Ambient Fill - Guarantees the ball is NEVER black from any angle */}
+      <ambientLight intensity={isDark ? 0.85 : 1.1} />
 
-      {/* Main Key Directional Light */}
+      {/* Front Camera Facing Key Light - Always lights whatever side faces the user */}
       <directionalLight
-        position={[4, 5, 4]}
-        intensity={isDark ? 2.2 : 2.8}
-        color={isDark ? '#ffffff' : '#f8fafc'}
-        castShadow
+        position={[0, 1, 5.5]}
+        intensity={isDark ? 1.8 : 2.0}
+        color="#ffffff"
       />
 
-      {/* Rim Accent Light (Sport Green / Emerald) */}
+      {/* Top-Right Stadium Key Light - Creates authentic stadium highlights */}
       <directionalLight
-        position={[-5, -2, -3]}
-        intensity={isDark ? 1.8 : 1.2}
+        position={[4, 5, 4]}
+        intensity={isDark ? 2.2 : 2.6}
+        color={isDark ? '#ffffff' : '#f8fafc'}
+      />
+
+      {/* Left Rim Accent Light (Sport Emerald Green) */}
+      <directionalLight
+        position={[-5, -1, -2]}
+        intensity={isDark ? 2.0 : 1.4}
         color="#22c55e"
       />
 
-      {/* Soft Back Fill Light */}
+      {/* Bottom Soft Fill Light */}
       <directionalLight
         position={[0, -4, 2]}
-        intensity={isDark ? 0.5 : 0.8}
+        intensity={isDark ? 0.7 : 0.9}
         color="#38bdf8"
       />
 
       {/* Dynamic Animated Point Light */}
       <pointLight
         ref={pointLightRef}
-        intensity={isDark ? 1.5 : 1.0}
-        distance={8}
+        intensity={isDark ? 1.6 : 1.2}
+        distance={9}
         color="#22c55e"
       />
     </>

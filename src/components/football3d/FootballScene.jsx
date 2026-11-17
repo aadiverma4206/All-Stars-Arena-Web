@@ -27,7 +27,7 @@ export function FootballScene() {
   }
 
   return (
-    <div className="relative w-full h-[380px] sm:h-[450px] md:h-[500px] flex items-center justify-center pointer-events-auto overflow-visible">
+    <div className="relative w-full h-[380px] sm:h-[450px] md:h-[500px] flex items-center justify-center pointer-events-auto overflow-visible select-none">
       {/* Soft Ambient Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(34,197,94,0.14)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
 
@@ -36,9 +36,8 @@ export function FootballScene() {
           <Canvas
             camera={{ position: [0, 0, 6.0], fov: 42 }}
             dpr={[1, 2]}
-            shadows
             gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-            className="w-full h-full"
+            className="w-full h-full cursor-grab active:cursor-grabbing touch-none select-none"
           >
             <FootballLighting theme={theme} />
             <FootballModel

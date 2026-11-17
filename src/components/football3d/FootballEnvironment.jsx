@@ -1,19 +1,6 @@
-import React from 'react';
-import { ContactShadows } from '@react-three/drei';
-
-export function FootballEnvironment({ theme = 'dark' }) {
-  return (
-    <>
-      <ContactShadows
-        position={[0, -2.5, 0]}
-        opacity={theme === 'dark' ? 0.65 : 0.45}
-        scale={8}
-        blur={2.5}
-        far={4.5}
-        color={theme === 'dark' ? '#011410' : '#475569'}
-      />
-    </>
-  );
+export function FootballEnvironment() {
+  // Shadow completely removed as requested
+  return null;
 }
 
 export default FootballEnvironment;

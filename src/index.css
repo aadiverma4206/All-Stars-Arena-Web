@@ -143,13 +143,10 @@ html.dark .footy-glass {
   }
 }
 
-/* River Flow Wave Animations */
+/* River Flow Wave Animations - 100% Seamless Continuous GPU-Accelerated Flow */
 @keyframes river-flow-1 {
   0% {
     transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(-25%, 5px, 0);
   }
   100% {
     transform: translate3d(-50%, 0, 0);
@@ -158,13 +155,10 @@ html.dark .footy-glass {
 
 @keyframes river-flow-2 {
   0% {
-    transform: translate3d(-50%, 0, 0);
-  }
-  50% {
-    transform: translate3d(-25%, -6px, 0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -172,27 +166,69 @@ html.dark .footy-glass {
   0% {
     transform: translate3d(0, 0, 0);
   }
-  50% {
-    transform: translate3d(-20%, 4px, 0);
-  }
   100% {
-    transform: translate3d(-40%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-river-1 {
-  animation: river-flow-1 13s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation: river-flow-1 14s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .animate-river-2 {
-  animation: river-flow-2 9.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation: river-flow-2 9.5s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .animate-river-3 {
-  animation: river-flow-3 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation: river-flow-3 6.5s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Vertical Testimonial Floating Marquee Animations */
+@keyframes marquee-vertical-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-vertical-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-marquee-up {
+  animation: marquee-vertical-up 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-down {
+  animation: marquee-vertical-down 36s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-up-alt {
+  animation: marquee-vertical-up 28s linear infinite;
+  will-change: transform;
+}
+
+/* Individual Column Hover Pause: ONLY the hovered column pauses, others keep moving! */
+.animate-marquee-up:hover,
+.animate-marquee-down:hover,
+.animate-marquee-up-alt:hover,
+.col-hover-pause:hover {
+  animation-play-state: paused !important;
 }
 
 .glow-border {

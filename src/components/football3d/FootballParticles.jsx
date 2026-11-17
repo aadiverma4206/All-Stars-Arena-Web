@@ -41,7 +41,7 @@ export function FootballParticles({ count = 90, theme = 'dark', reducedMotion = 
   const particleColor = theme === 'dark' ? '#22c55e' : '#16a34a';
 
   return (
-    <points ref={pointsRef}>
+    <points ref={pointsRef} raycast={() => null}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"

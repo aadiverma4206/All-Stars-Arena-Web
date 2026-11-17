@@ -24,6 +24,21 @@ export function useFootballAnimation() {
       mouseRef.current.targetY = -(e.clientY / innerHeight) * 2 + 1;
     };
 
+    // Touch movement listener for mobile & tablets
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches[0]) {
+        const touch = e.touches[0];
+        const { innerWidth, innerHeight } = window;
+        mouseRef.current.targetX = (touch.clientX / innerWidth) * 2 - 1;
+        mouseRef.current.targetY = -(touch.clientY / innerHeight) * 2 + 1;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current.targetX = 0;
+      mouseRef.current.targetY = 0;
+    };
+
     // Scroll listener
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
@@ -31,10 +46,14 @@ export function useFootballAnimation() {
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('mouseleave', handleMouseLeave, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('scroll', handleScroll);
       if (mediaQuery.removeEventListener) {
         mediaQuery.removeEventListener('change', handleMotionChange);

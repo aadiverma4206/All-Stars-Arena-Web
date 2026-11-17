@@ -27,20 +27,105 @@ export const HomePage = () => {
   const reviews = [
     {
       name: 'Abhinav',
+      avatar: 'AB',
+      color: 'bg-emerald-600',
+      role: 'Weekend Striker',
       location: 'Raipur (Beside Zola Mall)',
       text: 'I love playing football, so being able to pick and choose when to play is the best thing ever. The 5G pitch beside Zola Mall is top quality. If I could give 10 stars, I would.'
     },
     {
       name: 'Prithivi',
+      avatar: 'PR',
+      color: 'bg-indigo-600',
+      role: 'Regular Baller',
       location: 'Raipur (VIP Road)',
-      text: "Without All Stars Arena, I would've been depressed after moving to a new city and not playing football for a while as well as not having a group to play with."
+      text: "Without All Stars Arena, I would've been depressed after moving to a new city and not having a group to play with. Now I have a solid weekly squad under the floodlights."
     },
     {
       name: 'Prashant',
+      avatar: 'PS',
+      color: 'bg-purple-600',
+      role: 'Tournament Organizer',
       location: 'Raipur (Shankar Nagar)',
-      text: 'I have actually turned into a bit of a football addict, trying to get 3 or 4 games in per week under their night floodlights.'
+      text: 'I have actually turned into a bit of a football addict, trying to get 3 or 4 games in per week under their night floodlights. The pitch maintenance is unmatched.'
+    },
+    {
+      name: 'Sameer Verma',
+      avatar: 'SV',
+      color: 'bg-amber-600',
+      role: '5v5 Futsal Captain',
+      location: 'Raipur (Devendra Nagar)',
+      text: 'Best synthetic turf in Chhattisgarh by a mile! No knee burns, high rebound perimeter nets, and the official size-5 match balls provided are top-tier.'
+    },
+    {
+      name: 'Ritesh Tiwari',
+      avatar: 'RT',
+      color: 'bg-rose-600',
+      role: 'Goalkeeper',
+      location: 'Raipur (Samta Colony)',
+      text: 'The 350+ LUX stadium lights make night games feel like Champions League nights. Zero flickering, perfect visibility, and plenty of safe parking space.'
+    },
+    {
+      name: 'Aman Sharma',
+      avatar: 'AS',
+      color: 'bg-teal-600',
+      role: 'Basketball Player',
+      location: 'Raipur (Pandri)',
+      text: 'Having a dedicated basketball court alongside the football turf is a game changer for Raipur. Grip on the court is great and the hoops are regulation height.'
+    },
+    {
+      name: 'Ankit Agrawal',
+      avatar: 'AA',
+      color: 'bg-blue-600',
+      role: 'Midfield Playmaker',
+      location: 'Raipur (Telibandha)',
+      text: 'Super easy slot booking. We booked a 9 PM to 11 PM slot for our corporate team match, and the staff had the bibs, water, and balls ready before we even stepped in.'
+    },
+    {
+      name: 'Siddharth Jain',
+      avatar: 'SJ',
+      color: 'bg-cyan-600',
+      role: 'Casual Baller',
+      location: 'Raipur (Civil Lines)',
+      text: 'The air-conditioned changing rooms and clean showers are a blessing after an intense 60-minute game. Premium amenities right next to Zola Mall.'
+    },
+    {
+      name: 'Tushar Sahu',
+      avatar: 'TS',
+      color: 'bg-orange-600',
+      role: 'Futsal Enthusiast',
+      location: 'Raipur (Kapa)',
+      text: 'Great community vibe! If you are solo and dont have a full team, people here welcome you to join pickup games. Made so many good friends here.'
+    },
+    {
+      name: 'Kunal Kashyap',
+      avatar: 'KK',
+      color: 'bg-emerald-700',
+      role: 'Sunday League Striker',
+      location: 'Raipur (Tatibandh)',
+      text: 'We host our Sunday 7v7 league matches here every weekend. The drainage system is insane — even after heavy rains, the pitch is playable in 15 minutes.'
+    },
+    {
+      name: 'Harshita Patel',
+      avatar: 'HP',
+      color: 'bg-fuchsia-600',
+      role: 'Women’s Team Forward',
+      location: 'Raipur (VIP Estate)',
+      text: 'Very safe and welcoming venue for women footballers. Security, dedicated locker rooms, and well-lit surroundings make it the best sports facility in town.'
+    },
+    {
+      name: 'Rohit Deshmukh',
+      avatar: 'RD',
+      color: 'bg-violet-600',
+      role: 'Weekend Defender',
+      location: 'Raipur (Mowa)',
+      text: 'The turf cushioning is very gentle on ankles and knees. Playing 2 hours here feels effortless compared to hard grounds. Highly recommended to everyone in Raipur!'
     }
   ];
+
+  const col1Reviews = [reviews[0], reviews[3], reviews[6], reviews[9]];
+  const col2Reviews = [reviews[1], reviews[4], reviews[7], reviews[10]];
+  const col3Reviews = [reviews[2], reviews[5], reviews[8], reviews[11]];
 
   const faqs = [
     {
@@ -147,7 +232,7 @@ export const HomePage = () => {
       </section>
 
       {/* 3. THE STATS NEVER LIE SECTION */}
-      <section id="stats" className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#011410] p-6 sm:p-14 border border-emerald-900/40 text-white text-center shadow-2xl scroll-mt-24">
+      <section id="stats" className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#011f13] p-6 sm:p-14 border border-emerald-800/40 text-white text-center shadow-2xl scroll-mt-24">
         <h2 className="text-xl sm:text-4xl font-black uppercase tracking-tight mb-8 sm:mb-10">The Stats Never Lie</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-8">
           <div>
@@ -196,30 +281,148 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 5. REVIEWS SECTION */}
-      <section id="reviews" className="space-y-6 sm:space-y-8 text-center px-1 scroll-mt-24">
+      {/* 5. REVIEWS SECTION - STRAIGHT 3D ELEVATION FLOATING SHOWCASE */}
+      <section id="reviews" className="space-y-6 sm:space-y-10 text-center px-1 scroll-mt-24">
         <div>
           <span className="text-xs font-black text-rose-500 uppercase tracking-widest block">REVIEWS</span>
           <h2 className="text-xl sm:text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tight mt-1">
             What our community have to say
           </h2>
+          <p className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 mt-2 max-w-xl mx-auto">
+            Real ballers, real intensity, real community. Explore reviews floating live across our stadium wall.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-          {reviews.map((rev, idx) => (
-            <div key={idx} className="footy-card p-5 sm:p-6 space-y-4 text-left flex flex-col justify-between hover:border-sport-500/40 transition-all shadow-md">
-              <div className="space-y-3">
-                <div className="flex text-amber-400 space-x-1">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400" />)}
-                </div>
-                <p className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 italic leading-relaxed">"{rev.text}"</p>
-              </div>
-              <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
-                <span className="font-extrabold text-sm text-slate-900 dark:text-white block">{rev.name}</span>
-                <span className="text-[10px] font-bold text-slate-400 uppercase">{rev.location}</span>
+        {/* Floating Columns Container */}
+        <div className="relative h-[620px] sm:h-[700px] overflow-hidden select-none">
+          {/* Top & Bottom Atmospheric Ambient Fades */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 sm:h-36 bg-gradient-to-b from-slate-50 dark:from-[#011410] to-transparent z-20" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 sm:h-36 bg-gradient-to-t from-slate-50 dark:from-[#011410] to-transparent z-20" />
+
+          {/* Straight Upright Column Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 h-full items-start">
+            
+            {/* Column 1: Floats UP */}
+            <div className="relative h-full">
+              <div className="flex flex-col gap-5 sm:gap-6 animate-marquee-up col-hover-pause">
+                {[...col1Reviews, ...col1Reviews].map((rev, idx) => (
+                  <div
+                    key={`col1-${idx}`}
+                    className="group/card relative p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#031c17] border border-slate-200/90 dark:border-emerald-900/50 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08),0_4px_10px_-2px_rgba(0,0,0,0.04)] dark:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.7)] hover:shadow-[0_24px_48px_-12px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_24px_50px_-12px_rgba(16,185,129,0.45)] hover:border-emerald-500/60 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 space-y-4 flex flex-col justify-between text-left shrink-0"
+                  >
+                    {/* 3D Specular Light Sheen Overlay */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-emerald-500/0 via-emerald-500/5 to-white/10 dark:to-emerald-400/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center space-x-1 text-amber-400 drop-shadow-[0_1px_2px_rgba(245,158,11,0.3)]">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400" />
+                        ))}
+                      </div>
+                      <p className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                        "{rev.text}"
+                      </p>
+                    </div>
+
+                    <div className="flex items-center space-x-3 pt-3 border-t border-slate-100 dark:border-slate-800/80 relative z-10">
+                      <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-black text-xs text-white shadow-md ring-2 ring-white/80 dark:ring-white/15 shrink-0 ${rev.color}`}>
+                        {rev.avatar}
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white truncate">
+                          {rev.name}
+                        </h4>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-400 dark:text-slate-400 block truncate">
+                          {rev.role} • {rev.location}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+
+            {/* Column 2: Floats DOWN (ak upar aur ak niche) */}
+            <div className="relative h-full">
+              <div className="flex flex-col gap-5 sm:gap-6 animate-marquee-down col-hover-pause">
+                {[...col2Reviews, ...col2Reviews].map((rev, idx) => (
+                  <div
+                    key={`col2-${idx}`}
+                    className="group/card relative p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#031c17] border border-slate-200/90 dark:border-emerald-900/50 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08),0_4px_10px_-2px_rgba(0,0,0,0.04)] dark:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.7)] hover:shadow-[0_24px_48px_-12px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_24px_50px_-12px_rgba(16,185,129,0.45)] hover:border-emerald-500/60 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 space-y-4 flex flex-col justify-between text-left shrink-0"
+                  >
+                    {/* 3D Specular Light Sheen Overlay */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-emerald-500/0 via-emerald-500/5 to-white/10 dark:to-emerald-400/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center space-x-1 text-amber-400 drop-shadow-[0_1px_2px_rgba(245,158,11,0.3)]">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400" />
+                        ))}
+                      </div>
+                      <p className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                        "{rev.text}"
+                      </p>
+                    </div>
+
+                    <div className="flex items-center space-x-3 pt-3 border-t border-slate-100 dark:border-slate-800/80 relative z-10">
+                      <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-black text-xs text-white shadow-md ring-2 ring-white/80 dark:ring-white/15 shrink-0 ${rev.color}`}>
+                        {rev.avatar}
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white truncate">
+                          {rev.name}
+                        </h4>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-400 dark:text-slate-400 block truncate">
+                          {rev.role} • {rev.location}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 3: Floats UP (third wala aur upar ja rha hai) */}
+            <div className="hidden lg:block relative h-full">
+              <div className="flex flex-col gap-5 sm:gap-6 animate-marquee-up-alt col-hover-pause">
+                {[...col3Reviews, ...col3Reviews].map((rev, idx) => (
+                  <div
+                    key={`col3-${idx}`}
+                    className="group/card relative p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#031c17] border border-slate-200/90 dark:border-emerald-900/50 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.08),0_4px_10px_-2px_rgba(0,0,0,0.04)] dark:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.7)] hover:shadow-[0_24px_48px_-12px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_24px_50px_-12px_rgba(16,185,129,0.45)] hover:border-emerald-500/60 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 space-y-4 flex flex-col justify-between text-left shrink-0"
+                  >
+                    {/* 3D Specular Light Sheen Overlay */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-emerald-500/0 via-emerald-500/5 to-white/10 dark:to-emerald-400/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center space-x-1 text-amber-400 drop-shadow-[0_1px_2px_rgba(245,158,11,0.3)]">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400" />
+                        ))}
+                      </div>
+                      <p className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                        "{rev.text}"
+                      </p>
+                    </div>
+
+                    <div className="flex items-center space-x-3 pt-3 border-t border-slate-100 dark:border-slate-800/80 relative z-10">
+                      <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-black text-xs text-white shadow-md ring-2 ring-white/80 dark:ring-white/15 shrink-0 ${rev.color}`}>
+                        {rev.avatar}
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="font-extrabold text-xs sm:text-sm text-slate-900 dark:text-white truncate">
+                          {rev.name}
+                        </h4>
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-slate-400 dark:text-slate-400 block truncate">
+                          {rev.role} • {rev.location}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -281,7 +484,7 @@ export const HomePage = () => {
       <section id="pitches" className="footy-card p-6 sm:p-12 space-y-8 scroll-mt-24">
         
         {/* Venue Location Hero Banner */}
-        <div className="rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-[#031c17] via-[#011410] to-[#031c17] border border-sport-500/30 text-white shadow-2xl space-y-6">
+        <div className="rounded-3xl p-6 sm:p-10 bg-[#011f13] border border-emerald-800/40 text-white shadow-2xl space-y-6">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800">
             <div className="space-y-3">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sport-500/10 border border-sport-500/30 text-sport-400 text-xs font-black uppercase tracking-wider">

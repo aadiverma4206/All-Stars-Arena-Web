@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -166,8 +166,10 @@ function generateRealisticFootballTexture(theme = 'dark') {
   drawArenaBrand(canvas.width * 0.75, canvas.height * 0.5);
 
   const texture = new THREE.CanvasTexture(canvas);
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.needsUpdate = true;
   texture.anisotropy = 16;
   return texture;
 }
@@ -175,49 +177,163 @@ function generateRealisticFootballTexture(theme = 'dark') {
 export function FootballModel({ mouseRef, scrollRef, theme = 'dark', reducedMotion = false }) {
   const meshRef = useRef();
   const groupRef = useRef();
+  const currentMouse = useRef({ x: 0, y: 0 });
+  const currentScale = useRef(1.58);
+  const [isHovered, setIsHovered] = useState(false);
+  const isDragging = useRef(false);
+  const prevPointer = useRef({ x: 0, y: 0 });
+  const spinVelocity = useRef({ x: 0, y: 0 });
 
   const texture = useMemo(() => generateRealisticFootballTexture(theme), [theme]);
+
+  // Global pointerup safety so releasing mouse outside window or canvas cleanly releases drag
+  useEffect(() => {
+    const handleGlobalPointerUp = () => {
+      isDragging.current = false;
+      document.body.style.cursor = 'auto';
+    };
+    window.addEventListener('pointerup', handleGlobalPointerUp);
+    return () => {
+      window.removeEventListener('pointerup', handleGlobalPointerUp);
+    };
+  }, []);
+
+  // Update cursor style on hover/drag
+  useEffect(() => {
+    if (isHovered) {
+      document.body.style.cursor = isDragging.current ? 'grabbing' : 'grab';
+      return () => {
+        document.body.style.cursor = 'auto';
+      };
+    }
+  }, [isHovered]);
+
+  const handlePointerDown = (e) => {
+    e.stopPropagation();
+    isDragging.current = true;
+    document.body.style.cursor = 'grabbing';
+    const cx = e.clientX ?? e.nativeEvent?.clientX ?? 0;
+    const cy = e.clientY ?? e.nativeEvent?.clientY ?? 0;
+    prevPointer.current = { x: cx, y: cy };
+    if (e.target && e.target.setPointerCapture) {
+      try {
+        e.target.setPointerCapture(e.pointerId);
+      } catch {
+        // ignore
+      }
+    }
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDragging.current) return;
+    const cx = e.clientX ?? e.nativeEvent?.clientX ?? 0;
+    const cy = e.clientY ?? e.nativeEvent?.clientY ?? 0;
+    const dx = cx - prevPointer.current.x;
+    const dy = cy - prevPointer.current.y;
+    prevPointer.current = { x: cx, y: cy };
+
+    // Inject angular momentum proportional to cursor drag distance
+    spinVelocity.current.y += dx * 0.007;
+    spinVelocity.current.x += dy * 0.007;
+  };
+
+  const handlePointerUp = (e) => {
+    isDragging.current = false;
+    document.body.style.cursor = isHovered ? 'grab' : 'auto';
+    if (e.target && e.target.releasePointerCapture) {
+      try {
+        e.target.releasePointerCapture(e.pointerId);
+      } catch {
+        // ignore
+      }
+    }
+  };
 
   useFrame((state, delta) => {
     if (!meshRef.current || !groupRef.current) return;
     const t = state.clock.getElapsedTime();
     const safeDelta = Math.min(delta, 0.05); // Clamp frame delta to prevent jitter/stutter
+    const damp = 1 - Math.exp(-7 * safeDelta);
+
+    // Track mouse coordinate targets smoothly
+    if (mouseRef?.current) {
+      currentMouse.current.x = THREE.MathUtils.lerp(
+        currentMouse.current.x,
+        mouseRef.current.targetX || 0,
+        damp
+      );
+      currentMouse.current.y = THREE.MathUtils.lerp(
+        currentMouse.current.y,
+        mouseRef.current.targetY || 0,
+        damp
+      );
+    }
 
     if (!reducedMotion) {
-      // Buttery-smooth 3D spin
-      meshRef.current.rotation.y += safeDelta * 0.38;
-      meshRef.current.rotation.x += safeDelta * 0.18;
-      meshRef.current.rotation.z += safeDelta * 0.08;
+      // Continuous base spin + direct cursor spin momentum
+      const autoSpinY = safeDelta * 0.38;
+      const autoSpinX = safeDelta * 0.18;
+      const autoSpinZ = safeDelta * 0.08;
+
+      meshRef.current.rotation.y += autoSpinY + spinVelocity.current.y;
+      meshRef.current.rotation.x += autoSpinX + spinVelocity.current.x;
+      meshRef.current.rotation.z += autoSpinZ;
+
+      // Momentum friction decay on manual cursor spin
+      spinVelocity.current.x *= 0.94;
+      spinVelocity.current.y *= 0.94;
 
       // Gentle floating physics with scroll responsiveness
       const scrollOffset = (scrollRef?.current?.targetY || 0) * 0.15;
       const floatY = Math.sin(t * 1.2) * 0.08 - scrollOffset;
       const floatX = Math.cos(t * 0.8) * 0.04;
-      groupRef.current.position.y = floatY;
-      groupRef.current.position.x = floatX;
-    }
 
-    if (mouseRef?.current) {
-      const { targetX, targetY } = mouseRef.current;
-      // Frame-rate independent exponential damping for liquid-smooth mouse tracking
-      const damp = 1 - Math.exp(-6 * safeDelta);
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetY * 0.22, damp);
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX * 0.22, damp);
+      // 1. DYNAMIC POSITION: Ball noticeably translates to follow cursor in 3D space
+      const targetPosX = floatX + currentMouse.current.x * 0.85;
+      const targetPosY = floatY + currentMouse.current.y * 0.60;
+      const targetPosZ = isHovered ? 0.35 : 0;
+
+      groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetPosX, damp);
+      groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, targetPosY, damp);
+      groupRef.current.position.z = THREE.MathUtils.lerp(groupRef.current.position.z, targetPosZ, damp);
+
+      // 2. DYNAMIC TILT: Ball leans and rotates toward cursor orientation
+      const targetRotX = -currentMouse.current.y * 0.38;
+      const targetRotY = currentMouse.current.x * 0.50;
+      const targetRotZ = -currentMouse.current.x * 0.22;
+
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetRotX, damp);
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetRotY, damp);
+      groupRef.current.rotation.z = THREE.MathUtils.lerp(groupRef.current.rotation.z, targetRotZ, damp);
+
+      // 3. REACTIVE SCALE: Gentle expansion on hover
+      const targetScale = isHovered ? 1.66 : 1.58;
+      currentScale.current = THREE.MathUtils.lerp(currentScale.current, targetScale, damp);
+      meshRef.current.scale.setScalar(currentScale.current);
     }
   });
 
   return (
     <group ref={groupRef}>
-      {/* Optimized sphere with physical sheen */}
-      <mesh ref={meshRef} castShadow receiveShadow scale={1.58}>
+      {/* Optimized sphere with physical sheen & cursor interaction */}
+      <mesh
+        ref={meshRef}
+        scale={1.58}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        onPointerOver={() => setIsHovered(true)}
+        onPointerOut={() => {
+          setIsHovered(false);
+          isDragging.current = false;
+        }}
+      >
         <sphereGeometry args={[1, 64, 64]} />
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           map={texture}
           roughness={0.25}
-          metalness={0.08}
-          clearcoat={0.65}
-          clearcoatRoughness={0.08}
-          reflectivity={0.85}
+          metalness={0.06}
         />
       </mesh>
     </group>
