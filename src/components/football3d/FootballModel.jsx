@@ -2,7 +2,7 @@ import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-// Generate ultra-realistic 2048x1024 classic 32-panel FIFA match ball texture
+// Generate ultra-realistic 2048x1024 classic 32-panel All Stars Arena match ball texture
 function generateRealisticFootballTexture(theme = 'dark') {
   const canvas = document.createElement('canvas');
   canvas.width = 2048;
@@ -97,25 +97,25 @@ function generateRealisticFootballTexture(theme = 'dark') {
   }
   ctx.setLineDash([]); // Reset dash
 
-  // 5. Official FIFA ALL STARS Match Ball Watermark Logo
+  // 5. Official ALL STARS ARENA Match Ball Watermark Logo
   ctx.save();
   ctx.font = '900 24px sans-serif';
   
-  const fifaWidth = ctx.measureText('FIFA ').width;
-  const allStarsWidth = ctx.measureText('ALL STARS').width;
-  const totalWidth = fifaWidth + allStarsWidth;
+  const allStarsWidth = ctx.measureText('ALL STARS ').width;
+  const arenaWidth = ctx.measureText('ARENA').width;
+  const totalWidth = allStarsWidth + arenaWidth;
   const startX = (canvas.width - totalWidth) / 2;
   const textY = canvas.height / 2 + 10;
   
   ctx.textAlign = 'left';
   
-  // "FIFA" in vibrant green
-  ctx.fillStyle = '#22c55e';
-  ctx.fillText('FIFA ', startX, textY);
-  
   // "ALL STARS" in dark slate
   ctx.fillStyle = '#0f172a';
-  ctx.fillText('ALL STARS', startX + fifaWidth, textY);
+  ctx.fillText('ALL STARS ', startX, textY);
+  
+  // "ARENA" in vibrant green
+  ctx.fillStyle = '#22c55e';
+  ctx.fillText('ARENA', startX + allStarsWidth, textY);
   
   // "OFFICIAL MATCH BALL"
   ctx.font = '700 14px sans-serif';

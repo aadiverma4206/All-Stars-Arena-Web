@@ -1,8 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Trophy, Sparkles } from 'lucide-react';
+import AllStarsLogo from './AllStarsLogo';
 
 export const Footer = () => {
+  const scrollTo = (id) => {
+    if (id === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <footer className="border-t border-slate-200 dark:border-slate-800 bg-slate-900 text-white pt-12 pb-8 transition-colors">
       <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
@@ -10,42 +20,39 @@ export const Footer = () => {
         {/* Footer Navigation Columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-xs font-semibold text-slate-400">
           <div className="space-y-3">
-            <h4 className="text-white font-extrabold uppercase text-xs">New to FIFA All Stars?</h4>
+            <h4 className="text-white font-extrabold uppercase text-xs">New to All Stars Arena?</h4>
             <ul className="space-y-2">
-              <li><Link to="/community" className="hover:text-sport-500 transition-colors">What is FIFA All Stars</Link></li>
-              <li><Link to="/games" className="hover:text-sport-500 transition-colors">What to expect</Link></li>
-              <li><Link to="/community" className="hover:text-sport-500 transition-colors">Code of conduct</Link></li>
-              <li><Link to="/community" className="hover:text-sport-500 transition-colors">Contact us</Link></li>
+              <li><button onClick={() => scrollTo('about')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">What is All Stars Arena</button></li>
+              <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">What to expect</button></li>
+              <li><button onClick={() => scrollTo('faq')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Code of conduct</button></li>
+              <li><button onClick={() => scrollTo('faq')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Contact us</button></li>
             </ul>
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-white font-extrabold uppercase text-xs">About FIFA All Stars</h4>
+            <h4 className="text-white font-extrabold uppercase text-xs">About All Stars Arena</h4>
             <ul className="space-y-2">
-              <li><Link to="/community" className="hover:text-sport-500 transition-colors">Our story</Link></li>
-              <li><Link to="/community" className="hover:text-sport-500 transition-colors">Impact</Link></li>
-              <li><Link to="/games" className="hover:text-sport-500 transition-colors">Play football</Link></li>
-              <li><Link to="/courts" className="hover:text-sport-500 transition-colors">Store</Link></li>
+              <li><button onClick={() => scrollTo('about')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Our story</button></li>
+              <li><button onClick={() => scrollTo('stats')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Impact</button></li>
+              <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Play football</button></li>
+              <li><button onClick={() => scrollTo('pitches')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Pitches & Venues</button></li>
             </ul>
           </div>
 
           <div className="space-y-3">
             <h4 className="text-white font-extrabold uppercase text-xs">Popular links</h4>
             <ul className="space-y-2">
-              <li><Link to="/games" className="hover:text-sport-500 transition-colors">Game organizer</Link></li>
-              <li><Link to="/courts" className="hover:text-sport-500 transition-colors">Game host</Link></li>
-              <li><Link to="/community" className="hover:text-sport-500 transition-colors">Good causes</Link></li>
-              <li><Link to="/tournaments" className="hover:text-sport-500 transition-colors">Partnerships</Link></li>
+              <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Find games</button></li>
+              <li><button onClick={() => scrollTo('pitches')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Game host</button></li>
+              <li><button onClick={() => scrollTo('reviews')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Community reviews</button></li>
+              <li><button onClick={() => scrollTo('faq')} className="hover:text-sport-500 transition-colors cursor-pointer text-left">Frequently asked questions</button></li>
             </ul>
           </div>
 
-          {/* Powered by Botivate Section */}
+          {/* Official Brand Lockup & Powered by Botivate */}
           <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <Trophy className="w-5 h-5 text-sport-500" />
-              <span className="font-extrabold text-white uppercase tracking-wider">FIFA ALL STARS</span>
-            </div>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
+            <AllStarsLogo size="md" />
+            <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
               Premier Pickup Football & Arena Management Platform across India.
             </p>
             <div className="pt-2">
@@ -59,10 +66,10 @@ export const Footer = () => {
 
         {/* Bottom Copyright Ribbon */}
         <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-[11px] font-bold text-slate-500 gap-2">
-          <span>2026 © FIFA All Stars, Ltd. All rights reserved • Powered by <strong className="text-slate-300">Botivate</strong></span>
+          <span>2026 © All Stars Arena, Ltd. All rights reserved • Powered by <strong className="text-slate-300">Botivate</strong></span>
           <div className="flex space-x-4">
-            <span className="hover:underline cursor-pointer">Terms of use</span>
-            <span className="hover:underline cursor-pointer">Privacy policy</span>
+            <button onClick={() => scrollTo('about')} className="hover:underline cursor-pointer">Terms of use</button>
+            <button onClick={() => scrollTo('faq')} className="hover:underline cursor-pointer">Privacy policy</button>
           </div>
         </div>
 

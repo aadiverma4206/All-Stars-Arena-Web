@@ -55,7 +55,7 @@ export const useThemeStore = create(
       }
     }),
     {
-      name: 'fifa_all_stars_theme_preference',
+      name: 'all_stars_arena_theme_preference',
     }
   )
 );
