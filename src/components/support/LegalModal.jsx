@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Shield, AlertTriangle, FileText } from 'lucide-react';
 import { useSupportStore } from '../../store/useSupportStore';
@@ -53,7 +54,7 @@ export const LegalModal = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-white dark:bg-[#031d17] border border-slate-200 dark:border-emerald-900/60 rounded-3xl shadow-2xl overflow-hidden z-10"
+          className="relative w-full max-w-4xl max-h-[92vh] sm:max-h-[90vh] flex flex-col bg-white dark:bg-[#031d17] border border-slate-200 dark:border-emerald-900/60 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10"
         >
           {/* Header */}
           <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-[#021712]">
@@ -75,7 +76,7 @@ export const LegalModal = () => {
           </div>
 
           {/* Tab Selector */}
-          <div className="flex items-center gap-2 px-4 sm:px-6 pt-3 pb-2 border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#031d17] overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 pt-3 pb-2 border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#031d17] overflow-x-auto scrollbar-none">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -104,14 +105,25 @@ export const LegalModal = () => {
           </div>
 
           {/* Footer Bar */}
-          <div className="p-4 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-[#021712] flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+          <div className="p-3.5 sm:p-4 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-[#021712] flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3 text-center sm:text-left">
             <span>All Stars Arena • Beside Zora Mall, Raipur, Chhattisgarh 492006</span>
-            <button
-              onClick={closeLegalModal}
-              className="px-5 py-2 rounded-xl bg-slate-900 dark:bg-emerald-900/40 text-white font-bold hover:bg-sport-500 hover:text-slate-950 transition-colors cursor-pointer"
-            >
-              I Understand &amp; Agree
-            </button>
+            <div className="flex items-center gap-2">
+              {activeTab === 'privacy' && (
+                <Link
+                  to="/privacy-policy"
+                  onClick={closeLegalModal}
+                  className="px-3.5 py-2 rounded-xl border border-sport-500/40 text-sport-600 dark:text-sport-400 hover:bg-sport-500 hover:text-slate-950 font-bold transition-colors cursor-pointer text-xs"
+                >
+                  Open Dedicated Page ↗
+                </Link>
+              )}
+              <button
+                onClick={closeLegalModal}
+                className="px-5 py-2 rounded-xl bg-slate-900 dark:bg-emerald-900/40 text-white font-bold hover:bg-sport-500 hover:text-slate-950 transition-colors cursor-pointer"
+              >
+                I Understand &amp; Agree
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -266,7 +266,7 @@ export const ArenaEcosystemRadar = () => {
       label: '5G Synthetic Turf', 
       icon: Footprints, 
       angle: 135, 
-      tag: 'FIFA Quality', 
+      tag: 'ARENA Quality', 
       iconBg: 'bg-teal-500/15 text-teal-600 dark:text-teal-400 group-hover/mid:bg-teal-500 group-hover/mid:text-white',
       tagBg: 'bg-teal-100 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800',
       borderHover: 'hover:border-teal-500 hover:shadow-teal-500/25',
@@ -349,12 +349,12 @@ export const ArenaEcosystemRadar = () => {
 
       {/* 3D Perspective Stage Container */}
       <div 
-        className="relative w-[360px] h-[360px] sm:w-[540px] sm:h-[540px] md:w-[680px] md:h-[680px] lg:w-[740px] lg:h-[740px] flex items-center justify-center"
+        className="relative w-[270px] h-[270px] min-[350px]:w-[310px] min-[350px]:h-[310px] min-[400px]:w-[350px] min-[400px]:h-[350px] min-[480px]:w-[440px] min-[480px]:h-[440px] sm:w-[540px] sm:h-[540px] md:w-[680px] md:h-[680px] lg:w-[740px] lg:h-[740px] flex items-center justify-center max-w-full"
         style={{ perspective: 1200 }}
       >
         {/* Responsive Scale Wrapper - Continuous Rotation (Cursor hover does not snap or interrupt) */}
         <div 
-          className="relative w-[740px] h-[740px] flex items-center justify-center scale-[0.46] sm:scale-[0.70] md:scale-[0.88] lg:scale-100 transition-transform origin-center shrink-0"
+          className="relative w-[740px] h-[740px] flex items-center justify-center scale-[0.35] min-[350px]:scale-[0.41] min-[400px]:scale-[0.46] min-[480px]:scale-[0.58] sm:scale-[0.70] md:scale-[0.88] lg:scale-100 transition-transform origin-center shrink-0"
         >
 
           {/* Dotted Concentric Guide Rings with Multi-Color Accent Tints */}
@@ -578,16 +578,16 @@ export const ArenaEcosystemRadar = () => {
       </div>
 
       {/* Real-time Hover Feedback / Control Strip */}
-      <div className="mt-4 flex items-center gap-3 text-xs font-bold text-slate-500 dark:text-slate-400 px-4">
+      <div className="mt-4 flex items-center justify-center text-xs font-bold text-slate-500 dark:text-slate-400 px-3 max-w-lg mx-auto">
         {activeHoverNode ? (
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-sport-500/10 border border-sport-500/30 text-sport-600 dark:text-sport-400 animate-pulse">
-            <span className="w-2 h-2 rounded-full bg-sport-500" />
-            <span>Active Sector: <strong>{activeHoverNode}</strong> (Click to view details)</span>
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-sport-500/10 border border-sport-500/30 text-sport-600 dark:text-sport-400 animate-pulse text-center">
+            <span className="w-2 h-2 rounded-full bg-sport-500 shrink-0" />
+            <span className="break-words">Active Sector: <strong>{activeHoverNode}</strong> (Click to view details)</span>
           </div>
         ) : (
-          <div className="flex items-center gap-2 text-[11px] text-slate-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-sport-500" />
-            <span>Tip: Click any node to view details • Click the center ALL STARS ARENA button to rewind back to initial layout!</span>
+          <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-[11px] text-slate-500 text-center leading-relaxed">
+            <span className="w-1.5 h-1.5 rounded-full bg-sport-500 shrink-0" />
+            <span>Tip: Click any node to view details • Click the center ALL STARS ARENA button to rewind!</span>
           </div>
         )}
       </div>

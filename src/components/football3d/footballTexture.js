@@ -3,7 +3,7 @@ import * as THREE from 'three';
 // Module-level singleton cache for the immutable football match ball texture
 let cachedFootballTexture = null;
 
-// Generate ultra-realistic classic 32-panel FIFA match ball texture
+// Generate ultra-realistic classic 32-panel ARENA match ball texture
 export function getRealisticFootballTexture() {
   if (cachedFootballTexture) {
     return cachedFootballTexture;

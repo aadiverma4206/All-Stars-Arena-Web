@@ -8,17 +8,17 @@ export const AllStarsLogo = ({
   inverted = false
 }) => {
   const sizeMap = {
-    sm: 'h-10 sm:h-11 w-auto max-w-[120px]',
-    md: 'h-12 sm:h-14 w-auto max-w-[160px]',
-    lg: 'h-20 sm:h-24 w-auto max-w-[240px]',
-    xl: 'h-28 sm:h-36 w-auto max-w-[320px]'
+    sm: 'h-8 sm:h-10 w-auto max-w-[90px] sm:max-w-[120px]',
+    md: 'h-9 sm:h-12 md:h-14 w-auto max-w-[110px] sm:max-w-[140px] md:max-w-[160px]',
+    lg: 'h-14 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px]',
+    xl: 'h-18 sm:h-28 md:h-36 w-auto max-w-[190px] sm:max-w-[260px] md:max-w-[320px]'
   };
 
   const textSizeMap = {
-    sm: 'text-sm font-black',
-    md: 'text-base sm:text-lg font-black',
-    lg: 'text-xl sm:text-2xl font-black',
-    xl: 'text-2xl sm:text-3xl font-black'
+    sm: 'text-xs sm:text-sm font-black',
+    md: 'text-sm sm:text-base md:text-lg font-black',
+    lg: 'text-lg sm:text-xl md:text-2xl font-black',
+    xl: 'text-xl sm:text-2xl md:text-3xl font-black'
   };
 
   const currentSize = sizeMap[size] || sizeMap.md;

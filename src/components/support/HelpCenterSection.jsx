@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, ChevronDown, ChevronUp, MessageSquare, PhoneCall, Shield, FileText, HelpCircle } from 'lucide-react';
 import { useSupportStore } from '../../store/useSupportStore';
 import { ArenaEcosystemRadar } from './ArenaEcosystemRadar';
@@ -171,14 +172,14 @@ export const HelpCenterSection = () => {
   };
 
   return (
-    <section id="faq" className="footy-card p-5 sm:p-12 space-y-10 scroll-mt-24">
+    <section id="faq" className="footy-card p-4 sm:p-8 lg:p-12 space-y-8 sm:space-y-10 scroll-mt-24">
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sport-500/10 border border-sport-500/30 text-sport-500 text-xs font-black uppercase tracking-widest">
           <HelpCircle className="w-3.5 h-3.5" />
           <span>HELP &amp; SUPPORT AND LEGAL INFORMATION</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tight">
+        <h2 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tight break-words">
           Frequently Asked Questions &amp; Support Hub
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
@@ -187,10 +188,10 @@ export const HelpCenterSection = () => {
       </div>
 
       {/* Quick Action Support Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
         <button
           onClick={openChat}
-          className="p-4 rounded-2xl bg-gradient-to-br from-sport-500/15 via-sport-500/5 to-transparent border border-sport-500/40 hover:border-sport-500 text-left transition-all group cursor-pointer shadow-sm"
+          className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-sport-500/15 via-sport-500/5 to-transparent border border-sport-500/40 hover:border-sport-500 text-left transition-all group cursor-pointer shadow-sm"
         >
           <div className="flex items-center justify-between mb-2">
             <div className="w-9 h-9 rounded-xl bg-sport-500 text-slate-950 flex items-center justify-center font-black">
@@ -228,16 +229,16 @@ export const HelpCenterSection = () => {
           </p>
         </button>
 
-        <button
-          onClick={() => openLegalModal('privacy')}
-          className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 hover:border-sport-500 text-left transition-all group cursor-pointer shadow-sm"
+        <Link
+          to="/privacy-policy"
+          className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 hover:border-sport-500 text-left transition-all group cursor-pointer shadow-sm block"
         >
           <div className="flex items-center justify-between mb-2">
             <div className="w-9 h-9 rounded-xl bg-slate-900 dark:bg-slate-700 text-white flex items-center justify-center font-black">
               <Shield className="w-4 h-4" />
             </div>
             <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
-              Legal
+              Legal URL
             </span>
           </div>
           <h4 className="font-black text-sm text-slate-900 dark:text-white uppercase group-hover:text-sport-500 transition-colors">
@@ -246,7 +247,7 @@ export const HelpCenterSection = () => {
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Razorpay security, AWS S3 storage &amp; account rights.
           </p>
-        </button>
+        </Link>
 
         <button
           onClick={() => openLegalModal('terms')}
@@ -273,14 +274,14 @@ export const HelpCenterSection = () => {
       <ArenaEcosystemRadar />
 
       {/* Search Input Bar */}
-      <div className="relative max-w-xl mx-auto">
+      <div className="relative max-w-xl mx-auto w-full">
         <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
         <input
           type="text"
-          placeholder="Search by keyword (e.g. refund, boots, wallet, cancellation)..."
+          placeholder="Search by keyword (e.g. refund, boots, wallet)..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs sm:text-sm font-semibold focus:outline-none focus:border-sport-500 shadow-inner"
+          className="w-full pl-11 pr-16 py-3 sm:py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-base sm:text-sm font-semibold focus:outline-none focus:border-sport-500 shadow-inner"
         />
         {searchQuery && (
           <button
@@ -293,12 +294,12 @@ export const HelpCenterSection = () => {
       </div>
 
       {/* Category Pills */}
-      <div className="flex items-center justify-center gap-2 flex-wrap">
+      <div className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
               selectedCategory === cat
                 ? 'bg-sport-500 text-slate-950 shadow-md shadow-sport-500/20'
                 : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
@@ -341,12 +342,12 @@ export const HelpCenterSection = () => {
       {/* Bottom Legal Quick Strip */}
       <div className="pt-6 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-slate-500">
         <span>Need full legal disclosures?</span>
-        <button
-          onClick={() => openLegalModal('privacy')}
+        <Link
+          to="/privacy-policy"
           className="text-sport-500 hover:underline cursor-pointer"
         >
           Privacy Policy
-        </button>
+        </Link>
         <span>•</span>
         <button
           onClick={() => openLegalModal('risk')}

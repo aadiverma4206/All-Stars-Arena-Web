@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Bot, User, MapPin, CreditCard, RefreshCw, Calendar, PhoneCall } from 'lucide-react';
 import { useSupportStore } from '../../store/useSupportStore';
@@ -32,7 +33,7 @@ Your turf slot booking is confirmed instantly upon successful payment.
 • **Address:** Beside Zora Mall, VIP Road, Near Airport Circle, Raipur, Chhattisgarh 492006.
 • **Timings:** Open 7 Days a week from 06:00 AM to 12:00 AM (Midnight).
 • **Parking:** Free dedicated 50+ vehicle parking space right outside the turf gates.
-• **Turf Type:** Official 5G FIFA Synthetic Turf with 350+ LUX stadium night lights.`,
+• **Turf Type:** Official 5G ARENA Synthetic Turf with 350+ LUX stadium night lights.`,
 
   default: `👋 Thank you for messaging All Stars Arena Support! 
 Our team is here to assist with bookings, tournament slots, and Arena Wallet payments. 
@@ -41,6 +42,7 @@ You can tap any of the quick suggestion chips above, or call our toll-free suppo
 
 export const ChatSupportWidget = () => {
   const { isChatOpen, closeChat, openCallModal } = useSupportStore();
+  const location = useLocation();
 
   const [messages, setMessages] = useState([
     {
@@ -116,6 +118,10 @@ export const ChatSupportWidget = () => {
     handleSend(suggestion.label);
   };
 
+  if (location.pathname === '/privacy-policy' || location.pathname === '/privacy') {
+    return null;
+  }
+
   return (
     <AnimatePresence>
       {isChatOpen && (
@@ -124,7 +130,7 @@ export const ChatSupportWidget = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-20 right-3 sm:right-6 z-50 w-[94vw] sm:w-[410px] h-[550px] max-h-[82vh] bg-white dark:bg-[#021712] border border-slate-200 dark:border-emerald-900/60 rounded-3xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-16 sm:bottom-20 right-3 left-3 sm:left-auto sm:right-6 z-50 w-auto sm:w-[410px] max-w-[calc(100vw-1.5rem)] h-[520px] max-h-[78vh] sm:max-h-[82vh] bg-white dark:bg-[#021712] border border-slate-200 dark:border-emerald-900/60 rounded-3xl shadow-2xl flex flex-col overflow-hidden safe-bottom"
           >
             {/* Header */}
             <div className="p-4 bg-gradient-to-r from-sport-500 via-emerald-500 to-sport-600 text-slate-950 flex items-center justify-between shadow-md">
@@ -251,7 +257,7 @@ export const ChatSupportWidget = () => {
                 placeholder="Type your message..."
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:outline-none focus:border-sport-500"
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-base sm:text-xs font-semibold focus:outline-none focus:border-sport-500"
               />
               <button
                 type="submit"

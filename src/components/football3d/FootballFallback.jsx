@@ -14,7 +14,7 @@ export const FootballFallback = ({ theme = 'dark' }) => {
           y: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
           rotate: { duration: 25, repeat: Infinity, ease: 'linear' },
         }}
-        className="relative w-56 h-56 rounded-full flex items-center justify-center bg-gradient-to-tr from-sport-500 via-amber-400 to-sky-500 p-1 shadow-2xl"
+        className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full flex items-center justify-center bg-gradient-to-tr from-sport-500 via-amber-400 to-sky-500 p-1 shadow-2xl"
       >
         <div className={`w-full h-full rounded-full flex items-center justify-center text-7xl select-none transition-colors ${isDark ? 'bg-slate-950' : 'bg-white shadow-inner'}`}>
           ⚽

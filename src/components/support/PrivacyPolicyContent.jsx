@@ -128,7 +128,7 @@ export const PrivacyPolicyContent = () => {
             <a href="mailto:privacy@allstarsarena.com" className="font-bold text-rose-600 dark:text-rose-400 underline">
               privacy@allstarsarena.com
             </a>
-            <span> or submit a ticket through our Chat Support module. We process deletion within 48 business hours.</span>
+            <span>. We process deletion requests within 48 business hours.</span>
           </div>
         </div>
       </section>

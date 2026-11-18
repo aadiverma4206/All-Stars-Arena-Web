@@ -28,7 +28,7 @@ export function FootballScene() {
   }
 
   return (
-    <div className="relative w-full h-[280px] sm:h-[360px] md:h-[420px] lg:h-[480px] xl:h-[520px] flex items-center justify-center pointer-events-auto overflow-visible select-none">
+    <div className="relative w-full h-[260px] sm:h-[340px] md:h-[420px] lg:h-[480px] xl:h-[520px] flex items-center justify-center pointer-events-auto overflow-visible select-none">
       {/* Soft Ambient Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(34,197,94,0.14)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
 
@@ -57,7 +57,7 @@ export function FootballScene() {
                 }, false);
               }
             }}
-            className="w-full h-full cursor-grab active:cursor-grabbing touch-none select-none"
+            className="w-full h-full cursor-grab active:cursor-grabbing touch-pan-y select-none"
           >
             <FootballLighting theme={theme} />
             <FootballModel

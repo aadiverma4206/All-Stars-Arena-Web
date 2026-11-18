@@ -68,7 +68,7 @@ export const CallSupportModal = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-2xl bg-white dark:bg-[#031d17] border border-slate-200 dark:border-emerald-900/60 rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh]"
+          className="relative w-full max-w-2xl bg-white dark:bg-[#031d17] border border-slate-200 dark:border-emerald-900/60 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[92vh] sm:max-h-[90vh]"
         >
           {/* Header */}
           <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-[#021712]">
@@ -221,7 +221,7 @@ export const CallSupportModal = () => {
                         placeholder="e.g. 9876543210"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:outline-none focus:border-sport-500"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-base sm:text-xs font-semibold focus:outline-none focus:border-sport-500"
                       />
                     </div>
                     <div>
@@ -231,7 +231,7 @@ export const CallSupportModal = () => {
                       <select
                         value={issueType}
                         onChange={(e) => setIssueType(e.target.value)}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold focus:outline-none focus:border-sport-500"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-base sm:text-xs font-semibold focus:outline-none focus:border-sport-500"
                       >
                         <option value="Turf Booking Query">Turf Booking Query</option>
                         <option value="Cancellation / Refund">Cancellation / Refund</option>
